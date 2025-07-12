@@ -4,3 +4,4 @@ version = "0.0.0"
 edition = "2024"
 
 [dependencies]
+oxc = "0.77.0"

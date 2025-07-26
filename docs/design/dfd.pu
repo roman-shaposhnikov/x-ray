@@ -1,0 +1,30 @@
+@startuml DFD
+actor "Client" as Client
+rectangle "X-Ray CLI" as CLI
+
+Client --> CLI : Pass TS/JS project root path
+CLI --> Client : Return **Response** for each entity
+@enduml
+
+@startuml Response
+json Response {
+  "total": {
+    "modules": "number",
+    "classes": "number"
+  },
+  "entities": {
+    "modules": "Entity[]",
+    "classes": "Entity[]"
+  }
+}
+
+json Entity {
+  "id": "string",
+  "fan": "Fan"
+}
+
+json Fan {
+  "in": "number",
+  "out": "number"
+}
+@enduml

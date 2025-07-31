@@ -2,7 +2,7 @@
 actor "Client" as Client
 rectangle "X-Ray CLI" as CLI
 
-Client --> CLI : Pass TS/JS project root path
+Client --> CLI : Pass TS/JS project **root_entry** path
 CLI --> Client : Return **Response** for each entity
 @enduml
 

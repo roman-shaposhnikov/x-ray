@@ -1,10 +1,11 @@
-mod exit_code;
-mod range;
-mod scanner;
+mod shared;
+mod project;
+mod response;
 
 use std::{ env, path::Path, process };
-use range::{ Range, RangeError };
-use scanner::Scanner;
+use shared::range::{ Range, RangeError };
+use shared::exit_code;
+use project::Project;
 
 const ACCEPTED_ARG_COUNT: usize = 1;
 
@@ -13,9 +14,11 @@ fn main() {
     let range = Range::new(&args, 2, 2);
     match range.to_iter() {
         Ok(args) => {
-            let root_dir = Path::new(&args[1]);
-            if root_dir.is_dir() {
-                Scanner::new(root_dir).scan();
+            let root_entry = Path::new(&args[1]);
+            if root_entry.is_file() {
+                if let Ok(responce) = Project::new(root_entry).fan() {
+                    println!("{responce:?}");
+                };
             }
         }
         Err(error) => {

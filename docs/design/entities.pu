@@ -1,0 +1,17 @@
+@startuml Entities
+' @todo come up with more applicable name
+interface Entity {
+  +fan()
+}
+
+class Project {}
+
+class Module {}
+
+class Class {}
+
+Entity <|.. Project
+Entity <|.. Module
+Entity <|.. Class
+
+@enduml
